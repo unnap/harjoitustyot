@@ -9,5 +9,34 @@
   </head>
   <body>
     <button type="button" name="button" onclick="etsiPS()">pienin suurin</button>
+    <br>
+    <button type="button" name="button" onclick="tasaluku(8)">parillinen</button>
+    <button type="button" name="button" onclick="tasaluku(7)">pariton</button>
+    <br>
+    <button type="button" name="button" onclick="kuukausi(1)">1</button>
+    <button type="button" name="button" onclick="kuukausi(12)">12</button>
+    <br>
+    <form name="tiedot" method="post">
+      etunimi<input type="text" name="etunim" value="">
+      <br>
+      sukunimi<input type="text" name="sukunim" value="">
+<br>
+      lähiosoite<input type="text" name="osoite" value="">
+<br>
+      postinumero<input type="text" name="postinum" value="">
+<br>
+      postitoimipaikka<input type="text" name="postitoim" value="">
+<br>
+      puhelin<input type="text" name="puhelin" value="">
+<br>
+      sähköposti<input type="text" name="email" value="">
+<br>
+      <input type="button" value="lähetä" onclick="henkiloTiedot()">
+    </form>
+    <br>
+    <form name="testilista" action="index.html" method="post">
+      <input type="text" name="testinimi" value="">
+      <button type="button" name="button" onclick="testi()">testi</button>
+    </form>
   </body>
 </html>
