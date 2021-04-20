@@ -1,3 +1,12 @@
+function tehtava1() {
+  var num1 = document.t1.t1num.value;
+  if (num1 <= 0) {
+    document.getElementById('t1p').innerHTML = "luku on negatiivinen";
+  } else {
+    document.getElementById('t1p').innerHTML = "luku on positiivinen";
+  }
+}
+
 function tehtava2() {
   var vkpv = document.t2.valinta.value;
   switch (vkpv) {
