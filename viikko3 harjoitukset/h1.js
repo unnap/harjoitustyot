@@ -94,11 +94,24 @@ function tehtava10() {
 }
 
 function tehtava11() {
-  var pienempi = document.t11.valinta1.value;
-  var isompi = document.t11.valinta2.value;
-  if(pienempi > isompi) {
+  var pienempi = parseInt(document.t11.valinta1.value);
+  var suurempi = parseInt(document.t11.valinta2.value);
+  var parilliset = "parilliset numerot: ";
+  var parittomat = "parittomat numerot: ";
+  var sum1 = 0;
+  var sum2 = 0;
+  if(pienempi > suurempi) {
     document.getElementById('t11p').innerHTML = "pistä se pienempi numero sinne ylempään";
   } else {
-    alert('koodi kesken');
+    for (i = pienempi; i <= suurempi; i++) {
+      if (i % 2 == 0) {
+        parilliset += i + " ";
+        sum1 += i;
+      } else {
+        parittomat += i + " ";
+        sum2 += i;
+      }
+      document.getElementById('t11p').innerHTML = parilliset + "ja niiden summa: " + sum1 + "<br>" + parittomat + "ja niiden summa: " + sum2;
+    }
   }
 }
