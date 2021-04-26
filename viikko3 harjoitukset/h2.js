@@ -74,7 +74,7 @@ function tehtava2() {
 function tehtava3() {
   var array1 = [];
   var array2 = [];
-  var taulu = "<table border='1' style='border-collapse: collapse'>"
+  var taulu = "<table border='1' style='border-collapse: collapse'>";
   for (i = 0; i < 5; i++) {
     var n1 = Math.floor(Math.random() * 99) + 1;
     var n2 = Math.floor(Math.random() * 99) + 1;
@@ -94,25 +94,80 @@ function tehtava3() {
   }
   console.log(array1);
   console.log(array2.length);
-  document.getElementById('t3p').innerHTML = array1 + "<p>" + taulu + "</table>" + "</p>";
+  document.getElementById('t3p').innerHTML = "[" + array1 + "]" + "<p>" + taulu + "</table>" + "</p>";
 }
 
+
+//ANTEEKSI MÄ INNOSTUIN TÄMÄN TEHTÄVÄN KANSSA
+//HALUSIN TEHDÄ EKSTRAA
+//ANTEEKSI JOS TÄMÄ ON ÄRSYTTÄVÄ ARVIOIDA
+//MUTTA MULLA OLI HAUSKAA JA OPIN ASIOITA!!!
 function tehtava4() {
-  var maat = ["&#9824;", "&#9828;", "&#9829;", "&#9825;"]
-  var arvot = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
+  var maat = ["&#9824;", "&#9825;", "&#9826;", "&#9827;"];
+  var arvot = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
   var pakka = [];
+  var showPakka = "<table border='1' style='border-collapse: collapse'>";
+  var pakkaArr = [];
+  var kortit = [];
+
+  //Pakan luonti
   for (m = 0; m < 4; m++) {
     for (a = 0; a < 13; a++) {
       pakka.push(maat[m] + arvot[a]);
     }
   }
-  /*var maa = 0;
-  var arvo = 0;
-  for (a = 0; a < 5; a++) {
-    maa = Math.floor(Math.random() * 4);
-    arvo = Math.floor(Math.random() * 13);
-    kortit.push(maat[maa] + arvot[arvo]);
-  }*/
+  console.log("raw pakka");
   console.log(pakka);
-  //document.getElementById('t4p').innerHTML = pakka;
+
+  //Pakan sekoitus
+  for (s = pakka.length - 1; s > 0; s--) {
+    var shuffle = Math.floor(Math.random() * (s + 1));
+    var temp = pakka[s];
+    pakka[s] = pakka[shuffle];
+    pakka[shuffle] = temp;
+  }
+  console.log("sekoitus");
+  console.log(pakka);
+
+  //Korttien valinta
+  var pakkaValinta = [...pakka];
+  /*opin tässä kohtaa että pakkaValinta = pakka; on tosi huono tapa
+  kopioida taulu jos haluan pitää alkuperäisen muuttumattomana*/
+  for (v = 0; v < 5; v++) {
+    kortit.push(pakkaValinta.splice(Math.floor(Math.random() * 52), 1));
+  }
+  var k1 = kortit[0];
+  var k2 = kortit[1];
+  var k3 = kortit[2];
+  var k4 = kortit[3];
+  var k5 = kortit[4];
+
+  //Myöhempää looppia varten
+  for (ar = 0; ar < pakka.length; ar += 4) {
+    pakkaArr.push([pakka[ar], pakka[ar+1], pakka[ar+2], pakka[ar+3]]);
+  }
+
+  //Tekee pakasta html tablen ja highlightaa valitut kortit
+  for (tr = 0; tr < pakkaArr.length; tr++) {
+    showPakka += "<tr>";
+    for (td = 0; td < pakkaArr[tr].length; td++) {
+      if (pakkaArr[tr][td] == k1 || pakkaArr[tr][td] == k2 || pakkaArr[tr][td] == k3 || pakkaArr[tr][td] == k4 || pakkaArr[tr][td] == k5) {
+        showPakka += "<td style='background-color: #f44'>" + pakkaArr[tr][td] + "</td>";
+      } else {
+        showPakka += "<td>" + pakkaArr[tr][td] + "</td>";
+      }
+    }
+    showPakka += "</tr>";
+  }
+  console.log("pakka");
+  console.log(pakka);
+  console.log("pakkaArr");
+  console.log(pakkaArr);
+  console.log("kortit");
+  console.log(kortit);
+  console.log("showPakka");
+  console.log(showPakka);
+  //jätän nää console.logit tänne ihailtavaksi.
+  //hitsin pakkaValinta = pakka....
+  document.getElementById('t4p').innerHTML = "Korttisi ovat: " + kortit + "<br>" + showPakka + "</table>";
 }
